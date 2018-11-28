@@ -27,6 +27,7 @@ module.exports.routes = {
   '/': 'HomepageController.index',
   'POST /login': 'UserController.login',
   'POST /logout': 'UserController.logout',
+  'GET /human-resource': 'HumanResourceController.init',
 
   /***************************************************************************
    *                                                                          *
