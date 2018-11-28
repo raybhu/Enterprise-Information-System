@@ -28,6 +28,10 @@ module.exports.bootstrap = async function (done) {
     username: 'staff4',
     password: '123456',
     department: 'HumanResource',
+  }, {
+    username: 'boss',
+    password: '123456',
+    department: 'Boss',
   }]);
 
   if (await Item.count() > 0) {

@@ -17,7 +17,7 @@ module.exports = {
     },
     department: {
       type: 'string',
-      isIn: ['Order', 'Inventory', 'Accounting', 'HumanResource'],
+      isIn: ['Order', 'Inventory', 'Accounting', 'HumanResource', 'Boss'],
       required: true,
     },
     manipulating: {
