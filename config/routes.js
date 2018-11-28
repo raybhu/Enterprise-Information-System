@@ -28,6 +28,11 @@ module.exports.routes = {
   'POST /login': 'UserController.login',
   'POST /logout': 'UserController.logout',
   'GET /human-resource': 'HumanResourceController.init',
+  'GET /human-resource/:id': 'HumanResourceController.detail',
+  'POST /human-resource/update/:id': 'HumanResourceController.update',
+  'POST /human-resource/delete/:id': 'HumanResourceController.delete',
+  'POST  /human-resource/add': 'HumanResourceController.add',
+ 
 
   /***************************************************************************
    *                                                                          *

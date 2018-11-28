@@ -20,6 +20,11 @@ module.exports = {
       isIn: ['Order', 'Inventory', 'Accounting', 'HumanResource', 'Boss'],
       required: true,
     },
+
+    salary:{
+      type: 'number',
+    },
+
     manipulating: {
       collection: 'Order',
       via: 'manipulatedBy',
