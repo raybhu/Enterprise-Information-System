@@ -37,7 +37,16 @@ module.exports = {
     associatedItem: {
       collection: 'Item',
       via: 'associatedOrder',
-    }
+    },
+    orderStatus: {
+      type: 'string',
+      isIn: ['isOrdered', 'isDelivered'],
+      required: true,
+    },
+    orderTrackingNumber: {
+      type: 'string',
+    },
+
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝

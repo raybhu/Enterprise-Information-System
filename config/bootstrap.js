@@ -33,7 +33,6 @@ module.exports.bootstrap = async function (done) {
     password: '123456',
     department: 'Boss',
   }]);
-
   if (await Item.count() > 0) {
     return done();
   }
@@ -41,62 +40,50 @@ module.exports.bootstrap = async function (done) {
     itemId: '000001',
     itemModel: 'iPhone X',
     itemPrice: '5000',
-    itemStatus: 'isInStock',
   }, {
     itemId: '000002',
     itemModel: 'iPhone X',
     itemPrice: '5000',
-    itemStatus: 'isInStock',
   }, {
     itemId: '000003',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
-    itemStatus: 'isInStock',
   }, {
     itemId: '000004',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
-    itemStatus: 'isInStock',
   }, {
     itemId: '000005',
     itemModel: 'iPhone X',
     itemPrice: '5000',
-    itemStatus: 'isOrdered',
   }, {
     itemId: '000006',
     itemModel: 'iPhone X',
     itemPrice: '5000',
-    itemStatus: 'isOrdered',
   }, {
     itemId: '000007',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
-    itemStatus: 'isOrdered',
   }, {
     itemId: '000008',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
-    itemStatus: 'isOrdered',
   }, {
     itemId: '000009',
     itemModel: 'iPhone X',
     itemPrice: '5000',
-    itemStatus: 'isDelivered',
   }, {
     itemId: '000010',
     itemModel: 'iPhone X',
     itemPrice: '5000',
-    itemStatus: 'isDelivered',
   }, {
     itemId: '000011',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
-    itemStatus: 'isDelivered',
   }, {
     itemId: '000012',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
-    itemStatus: 'isDelivered',
   }]);
   if (await Order.count() > 0) {
     return done();
@@ -108,6 +95,7 @@ module.exports.bootstrap = async function (done) {
     orderAddress: 'Hong Kong Baptist University, Kowloon Tong, Kowloon, Hong Kong',
     orderDate: '2018-11-30',
     orderPaymentCard: '82041934141',
+    orderStatus: 'isOrdered',
   }, {
     orderId: '000002',
     orderUsername: 'Pony Ma',
@@ -115,6 +103,7 @@ module.exports.bootstrap = async function (done) {
     orderAddress: 'Hong Kong Baptist University, Kowloon Tong, Kowloon, Hong Kong',
     orderDate: '2018-11-30',
     orderPaymentCard: '82041934141',
+    orderStatus: 'isOrdered',
   }, {
     orderId: '000003',
     orderUsername: 'Whatever Ma',
@@ -122,6 +111,7 @@ module.exports.bootstrap = async function (done) {
     orderAddress: 'Hong Kong Baptist University, Kowloon Tong, Kowloon, Hong Kong',
     orderDate: '2018-11-30',
     orderPaymentCard: '82041934141',
+    orderStatus: 'isOrdered',
   }, {
     orderId: '000004',
     orderUsername: 'Any Ma',
@@ -129,6 +119,7 @@ module.exports.bootstrap = async function (done) {
     orderAddress: 'Hong Kong Baptist University, Kowloon Tong, Kowloon, Hong Kong',
     orderDate: '2018-11-30',
     orderPaymentCard: '82041934141',
+    orderStatus: 'isOrdered',
   }, {
     orderId: '000005',
     orderUsername: 'Jack Ma',
@@ -136,6 +127,8 @@ module.exports.bootstrap = async function (done) {
     orderAddress: 'Hong Kong Baptist University, Kowloon Tong, Kowloon, Hong Kong',
     orderDate: '2018-11-30',
     orderPaymentCard: '82041934141',
+    orderStatus: 'isDelivered',
+    orderTrackingNumber: '0987654321',
   }, {
     orderId: '000006',
     orderUsername: 'Pony Ma',
@@ -143,6 +136,8 @@ module.exports.bootstrap = async function (done) {
     orderAddress: 'Hong Kong Baptist University, Kowloon Tong, Kowloon, Hong Kong',
     orderDate: '2018-11-30',
     orderPaymentCard: '82041934141',
+    orderStatus: 'isDelivered',
+    orderTrackingNumber: '0987654321',
   }, {
     orderId: '000007',
     orderUsername: 'Whatever Ma',
@@ -150,6 +145,8 @@ module.exports.bootstrap = async function (done) {
     orderAddress: 'Hong Kong Baptist University, Kowloon Tong, Kowloon, Hong Kong',
     orderDate: '2018-11-30',
     orderPaymentCard: '82041934141',
+    orderStatus: 'isDelivered',
+    orderTrackingNumber: '0987654321',
   }, {
     orderId: '000008',
     orderUsername: 'Any Ma',
@@ -157,8 +154,9 @@ module.exports.bootstrap = async function (done) {
     orderAddress: 'Hong Kong Baptist University, Kowloon Tong, Kowloon, Hong Kong',
     orderDate: '2018-11-30',
     orderPaymentCard: '82041934141',
+    orderStatus: 'isDelivered',
+    orderTrackingNumber: '0987654321',
   }]);
-
   const testOrderedItem1 = await Item.findOne({
     itemId: '000005'
   });
@@ -183,49 +181,45 @@ module.exports.bootstrap = async function (done) {
   const testDeliveredItem4 = await Item.findOne({
     itemId: '000012'
   });
-  const testOrder1 = await Order.findOne({
+  const testOrderedOrder1 = await Order.findOne({
     orderId: '000001'
   });
-  const testOrder2 = await Order.findOne({
+  const testOrderedOrder2 = await Order.findOne({
     orderId: '000002'
   });
-  const testOrder3 = await Order.findOne({
+  const testOrderedOrder3 = await Order.findOne({
     orderId: '000003'
   });
-  const testOrder4 = await Order.findOne({
+  const testOrderedOrder4 = await Order.findOne({
     orderId: '000004'
   });
-  const testOrder5 = await Order.findOne({
+  const testDeliveredOrder1 = await Order.findOne({
     orderId: '000005'
   });
-  const testOrder6 = await Order.findOne({
+  const testDeliveredOrder2 = await Order.findOne({
     orderId: '000006'
   });
-  const testOrder7 = await Order.findOne({
+  const testDeliveredOrder3 = await Order.findOne({
     orderId: '000007'
   });
-  const testOrder8 = await Order.findOne({
+  const testDeliveredOrder4 = await Order.findOne({
     orderId: '000008'
   });
   const orderStaff = await Employee.findOne({
     username: 'staff1'
   });
-
-  await Order.addToCollection(testOrder1.id, 'associatedItem').members(testOrderedItem1.id);
-  await Order.addToCollection(testOrder2.id, 'associatedItem').members(testOrderedItem2.id);
-  await Order.addToCollection(testOrder3.id, 'associatedItem').members(testOrderedItem3.id);
-  await Order.addToCollection(testOrder4.id, 'associatedItem').members(testOrderedItem4.id);
-  await Order.addToCollection(testOrder5.id, 'associatedItem').members(testDeliveredItem1.id);
-  await Order.addToCollection(testOrder6.id, 'associatedItem').members(testDeliveredItem2.id);
-  await Order.addToCollection(testOrder7.id, 'associatedItem').members(testDeliveredItem3.id);
-  await Order.addToCollection(testOrder8.id, 'associatedItem').members(testDeliveredItem4.id);
-
-  await Order.addToCollection(testOrder5.id, 'manipulatedBy').members(orderStaff.id);
-  await Order.addToCollection(testOrder6.id, 'manipulatedBy').members(orderStaff.id);
-  await Order.addToCollection(testOrder7.id, 'manipulatedBy').members(orderStaff.id);
-  await Order.addToCollection(testOrder8.id, 'manipulatedBy').members(orderStaff.id);
-
-
+  await Order.addToCollection(testOrderedOrder1.id, 'associatedItem').members(testOrderedItem1.id);
+  await Order.addToCollection(testOrderedOrder2.id, 'associatedItem').members(testOrderedItem2.id);
+  await Order.addToCollection(testOrderedOrder3.id, 'associatedItem').members(testOrderedItem3.id);
+  await Order.addToCollection(testOrderedOrder4.id, 'associatedItem').members(testOrderedItem4.id);
+  await Order.addToCollection(testDeliveredOrder1.id, 'associatedItem').members(testDeliveredItem1.id);
+  await Order.addToCollection(testDeliveredOrder2.id, 'associatedItem').members(testDeliveredItem2.id);
+  await Order.addToCollection(testDeliveredOrder3.id, 'associatedItem').members(testDeliveredItem3.id);
+  await Order.addToCollection(testDeliveredOrder4.id, 'associatedItem').members(testDeliveredItem4.id);
+  await Order.addToCollection(testDeliveredOrder1.id, 'manipulatedBy').members(orderStaff.id);
+  await Order.addToCollection(testDeliveredOrder2.id, 'manipulatedBy').members(orderStaff.id);
+  await Order.addToCollection(testDeliveredOrder3.id, 'manipulatedBy').members(orderStaff.id);
+  await Order.addToCollection(testDeliveredOrder4.id, 'manipulatedBy').members(orderStaff.id);
   // By convention, this is a good place to set up fake data during development.
   //
   // For example:

@@ -6,11 +6,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item ">
           <a class="nav-link" href="/">Home </a>
         </li>
         <% if (emp && (emp.department === 'Order'||emp.department ==='Boss')) { %>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="/order">Order</a>
         </li>
         <% }%>
@@ -50,7 +50,7 @@
     <% }%>
   </nav>
 </div>
-<div class=" container">
+<div class="container">
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Recycle</h1>
@@ -58,3 +58,71 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="card">
+    <h5 class="card-header">Order ID:
+      <%=  orderModel.id%>
+    </h5>
+    <div class="card-body">
+      <h5 class="card-title">Order Status:
+        <% if (orderModel.orderStatus === 'isDelivered' ) {%>
+        Delivered
+        <%  } else if (orderModel.orderStatus === 'isOrdered' ) { %>
+        Undelivered
+        <%  }%>
+      </h5>
+      <p class="card-text">Payer:
+        <%= orderModel.orderUsername %>
+      </p>
+      <p class="card-text">Delivery Address:
+        <%= orderModel.orderAddress %>
+      </p>
+      <p class="card-text">Order Date:
+        <%= orderModel.orderDate %>
+      </p>
+      <p class="card-text">Payment Card No.:
+        <%= orderModel.orderPaymentCard %>
+      </p>
+      <p class="card-text">Order Price:
+        <%= orderModel.orderPrice %>
+      </p>
+      <% if (orderModel.orderStatus === 'isDelivered') {%>
+      <p class="card-text">Operation Staff:
+        <%= orderModel.manipulatedBy[0].username %>
+      </p>
+      <p class="card-text">Tracking Number:
+        <%= orderModel.orderTrackingNumber %>
+      </p>
+      <%} else if(orderModel.orderStatus === 'isOrdered')  {%>
+      <div class="input-group mb-3">
+        <input id="tracking-number" type="text" class="form-control" placeholder="Tracking Number" aria-label="Tracking Number"
+          aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-primary" value="<%=orderModel.id%>" type="button" id="button-addon2" onclick="deliver(this)">Deliver</button>
+        </div>
+      </div>
+      <%} %>
+      <a href="/order" class="btn btn-Link">Back to Order List</a>
+    </div>
+  </div>
+</div>
+<script>
+  async function deliver(button) {
+    var trackingNumber = document.getElementById("tracking-number").value;
+    var response = await fetch("/order/deliver", {
+      method: "POST",
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        trackingNumber: trackingNumber,
+        orderId: button.value,
+      }),
+    });
+    if (response.status == 200) {
+      location.reload(true);
+      alert('Deliver Successful');
+    } else {
+      alert('An Error occurred');
+    }
+  }
+
+</script>

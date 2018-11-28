@@ -18,11 +18,6 @@ module.exports = {
       type: 'number',
       required: true,
     },
-    itemStatus: {
-      type: 'string',
-      isIn: ['isInStock', 'isOrdered', 'isDelivered'],
-      required: true,
-    },
     associatedOrder: {
       collection: 'Order',
       via: 'associatedItem',
