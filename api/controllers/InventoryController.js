@@ -1,5 +1,5 @@
 /**
- * OrderController
+ * InventoryController
  *
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
@@ -12,32 +12,35 @@ module.exports = {
         username: req.session.username
       });
     }
-    var orderModels;
+    var itemModels;
     switch (req.query.status) {
       case 'all':
-        orderModels = await Order.find({});
+        itemModels = await Item.find({}).populate('associatedOrder');
         break;
-      case 'undelivered':
-        orderModels = await Order.find({
-          where: {
-            orderStatus: 'isOrdered'
+      case 'ordered':
+        itemModels = await Item.find({}).populate('associatedOrder', );
+        var newModels = [];
+        itemModels.forEach((model) => {
+          if (model.associatedOrder.length > 0) {
+            newModels.push(model);
           }
         });
+        itemModels = newModels;
         break;
-      case 'delivered':
-        orderModels = await Order.find({
+      case 'instock':
+        itemModels = await Item.find({}).populate('associatedOrder', {
           where: {
-            orderStatus: 'isDelivered'
+            associatedOrder: []
           }
         });
         break;
       default:
-        orderModels = await Order.find({});
+        itemModels = await Item.find({}).populate('associatedOrder');
     }
-    return res.view('pages/order', {
+    return res.view('pages/inventory', {
       layout: 'layouts/general-layout',
       emp: typeof emp === 'undefined' ? null : emp,
-      orderModels: orderModels
+      itemModels: itemModels,
     });
   },
   detail: async function (req, res) {
@@ -47,22 +50,20 @@ module.exports = {
         username: req.session.username
       });
     }
-    var orderModel = await Order.findOne(req.params.id).populate('manipulatedBy');
-    return res.view('pages/orderdetail', {
+    var itemModel;
+    itemModel = await Item.findOne({
+      id: req.params.id
+    }).populate('associatedOrder');
+    sails.log(itemModel);
+    return res.view('pages/itemdetail', {
       layout: 'layouts/general-layout',
       emp: typeof emp === 'undefined' ? null : emp,
-      orderModel: orderModel
+      itemModel: itemModel,
     });
   },
-  deliver: async function (req, res) {
-    var emp = await Employee.findOne({
-      username: req.session.username
-    });
-    await Order.addToCollection(req.body.orderId, 'manipulatedBy').members(emp.id);
-    await Order.update(req.body.orderId).set({
-      orderTrackingNumber: req.body.trackingNumber,
-      orderStatus: 'isDelivered',
-    }).fetch();
+  delete: async function (req, res) {
+    await Item.destroy(req.body.itemId).fetch();
+    sails.log(req.body.itemId);
     return res.status(200).json({});
   }
 };
