@@ -15,12 +15,12 @@
         </li>
         <% }%>
         <% if (emp && (emp.department === 'Inventory'||emp.department === 'Boss')) { %>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/inventory">Inventory</a>
         </li>
         <% }%>
         <% if (emp && (emp.department === 'Finance'||emp.department ==='Boss')) { %>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="/finance">Finance</a>
         </li>
         <% }%>
@@ -50,61 +50,11 @@
     <% }%>
   </nav>
 </div>
-<div class="container">
+<div class=" container">
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Recycle</h1>
       <p class="lead">Enterprise Information System</p>
     </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h4>Item List</h4>
-    </div>
-    <div class="dropdown text-right col-md-6 mb-2">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Category
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/inventory?status=all">All</a>
-        <a class="dropdown-item" href="/inventory?status=ordered">Ordered</a>
-        <a class="dropdown-item" href="/inventory?status=instock">In Stock</a>
-      </div>
-    </div>
-  </div>
-  <div class="list-group">
-    <% itemModels.forEach( function (model) { %>
-    <a href="/item/<%= model.id%>" class="list-group-item list-group-item-action flex-column align-items-start">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">ID:
-          <%=model.itemId%>
-        </h5>
-        <small>Status:
-          <% if (model.associatedOrder.length > 0 ) {%>
-          Ordered
-          <%  } else { %>
-          In Stock
-          <%  }%></small>
-      </div>
-      <p class="mb-1">Model:
-        <%=model.itemModel%>
-      </p>
-      <p class="mb-1">Price:
-        <%=model.itemPrice%>
-      </p>
-      <small>
-        <% if (model.associatedOrder.length > 0) { %>
-        <% if (model.associatedOrder[0].orderStatus === 'isDelivered') {%>
-        Delivered
-        <%} else {%>
-        Undelivered
-        <%}%>
-        <%}%>
-      </small>
-    </a>
-    <%  }) %>
   </div>
 </div>

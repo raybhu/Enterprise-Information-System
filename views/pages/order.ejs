@@ -59,39 +59,51 @@
   </div>
 </div>
 <div class="container">
-  <div class="dropdown col-md-12">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      Category
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/order?status=all">All</a>
-      <a class="dropdown-item" href="/order?status=undelivered">Undelivered</a>
-      <a class="dropdown-item" href="/order?status=delivered">Delivered</a>
+
+
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Order List</h4>
+    </div>
+
+    <div class="dropdown text-right col-md-6 mb-2">
+      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Category
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="/order?status=all">All</a>
+        <a class="dropdown-item" href="/order?status=undelivered">Undelivered</a>
+        <a class="dropdown-item" href="/order?status=delivered">Delivered</a>
+      </div>
     </div>
   </div>
-  <div class="container col-md-12">
-    <div class="list-group">
-      <% orderModels.forEach( function (model) { %>
-      <a href="/order/<%= model.id%>" class="list-group-item list-group-item-action flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">ID:
-            <%=model.orderId%>
-          </h5>
-          <small>Status:
-            <% if (model.orderStatus === 'isDelivered' ) {%>
-            Delivered
-            <%  } else if (model.orderStatus === 'isOrdered' ) { %>
-            Undelivered
-            <%  }%>
-          </small>
-        </div>
-        <p class="mb-1">Price:
-          <%=model.orderPrice%>
-        </p>
-        <p class="mb-1">Order Date:
-          <%=model.orderDate%>
-        </p>
-      </a>
-      <%  }) %>
-    </div>
+
+
+  <div class="list-group">
+    <% orderModels.forEach( function (model) { %>
+    <a href="/order/<%= model.id%>" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">ID:
+          <%=model.orderId%>
+        </h5>
+        <small>Status:
+          <% if (model.orderStatus === 'isDelivered' ) {%>
+          Delivered
+          <%  } else if (model.orderStatus === 'isOrdered' ) { %>
+          Undelivered
+          <%  }%>
+        </small>
+      </div>
+      <p class="mb-1">Price:
+        <%=model.orderPrice%>
+      </p>
+      <p class="mb-1">Order Date:
+        <%=model.orderDate%>
+      </p>
+    </a>
+    <%  }) %>
+  </div>
+</div>
