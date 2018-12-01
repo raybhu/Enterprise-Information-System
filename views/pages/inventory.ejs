@@ -102,6 +102,13 @@
         <%} else {%>
         Undelivered
         <%}%>
+        <%} else {%>
+        <%if (model.itemStatus === 'isReviewed') {%>
+        
+        Certified
+        <%} else {%>
+        Pending Certification 
+        <%}%>
         <%}%>
       </small>
     </a>

@@ -63,7 +63,12 @@ module.exports = {
   },
   delete: async function (req, res) {
     await Item.destroy(req.body.itemId).fetch();
-    sails.log(req.body.itemId);
+    return res.status(200).json({});
+  },
+  certify: async function (req, res) {
+    await Item.update(req.body.itemId).set({
+      itemStatus: 'isReviewed',
+    }).fetch();
     return res.status(200).json({});
   }
 };

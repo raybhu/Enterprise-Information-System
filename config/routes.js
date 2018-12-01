@@ -38,7 +38,11 @@ module.exports.routes = {
   'GET /inventory': 'InventoryController.init',
   'GET /item/:id': 'InventoryController.detail',
   'POST /item/delete/': 'InventoryController.delete',
+  'POST /item/certify/': 'InventoryController.certify',
   'GET /finance': 'FinanceController.init',
+
+
+
 
 
 

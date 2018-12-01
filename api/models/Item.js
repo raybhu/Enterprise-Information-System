@@ -22,6 +22,10 @@ module.exports = {
       type: 'string',
       required: true
     },
+    itemStatus: {
+      type: 'string',
+      isIn: ['isReviewed', 'isNotReviewed'],
+    },
     itemPrice: {
       type: 'number',
       required: true,
