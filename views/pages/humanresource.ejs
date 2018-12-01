@@ -58,38 +58,67 @@
     </div>
   </div>
 </div>
+
+
+
 <div class="container">
-  <div class="dropdown col-md-12">
-    <% if(item == null){ %>
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      Departments
-    </button>
-    <%} else { %>
-    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      <%= item %>
-    </button>
-    <%} %>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/human-resource?d=Order">Order</a>
-      <a class="dropdown-item" href="/human-resource?d=Inventory">Inventory</a>
-      <a class="dropdown-item" href="/human-resource?d=Accounting">Finance</a>
-      <a class="dropdown-item" href="/human-resource?d=HumanResource">Human Resource</a>
-    </div>
-
-
-  </div>
   <div class="row col-md-12">
     <div class="col-md-8">
-      <ul class="list-group">
-        <% emps.forEach(function(model){ %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <%= model.username %>
-          <a href="/human-resource/<%= model.id %>"><button class="btn btn-info">Detail</button></a>
-        </li>
-        <% }); %>
-      </ul>
+
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Employee List</h4>
+        </div>
+
+        <div class="dropdown text-right col-md-6 mb-2">
+          <% if(item == null){ %>
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Departments
+          </button>
+          <%} else { %>
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <%= item %>
+          </button>
+          <%} %>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/human-resource">All</a>
+            <a class="dropdown-item" href="/human-resource?d=Order">Order</a>
+            <a class="dropdown-item" href="/human-resource?d=Inventory">Inventory</a>
+            <a class="dropdown-item" href="/human-resource?d=Accounting">Finance</a>
+            <a class="dropdown-item" href="/human-resource?d=HumanResource">Human Resource</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-group">
+        <% emps.forEach( function (model) { %>
+        <a href="/human-resource/<%= model.id %>" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Username:
+              <%=model.username%>
+            </h5>
+            <small>Department:
+              <% if (model.department === 'Order' ) {%>
+              Order
+              <%  } else if (model.department === 'Inventory' ) { %>
+              Inventory
+              <%  } else if (model.department === 'Accounting' ) { %>
+              Finance
+              <%  } else if (model.department === 'HumanResource' ) { %>
+              Human Resource
+              <%  } else if (model.department === 'Boss' ) { %>
+              !!!BOSS!!!
+              <%  }%>
+            </small>
+          </div>
+          <p class="mb-1">Salary:
+            <%=model.salary%>
+          </p>
+        </a>
+        <%  }) %>
+      </div>
     </div>
 
     <div class="col-md-4">
@@ -98,72 +127,36 @@
           Add New Staff
         </div>
         <div class="card-body">
-          <label for="username">Username: </label>
-          <div class="input-group mb-3">
-
-            <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username"
-              aria-describedby="basic-addon1">
-
-
-          </div>
-          <label for="password">Password: </label>
-          <div class="input-group mb-3">
-
-            <input id="password" type="text" class="form-control" placeholder="Password" aria-label="Username"
-              aria-describedby="basic-addon1">
-
-
-          </div>
-          <label for="department">Department: </label>
-          <div class="input-group mb-3">
-
-            <input id="department" type="text" class="form-control" placeholder="Department" aria-label="Username"
-              aria-describedby="basic-addon1">
-
-
-          </div>
-          <button type="submit" class="btn btn-primary col-md-12">Confirm</button>
-
-
-
-
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-    <div class="col-md-4">
-      <div class="container">
-        <div class="col-md-12">
-          <h3>
-            Add New Employee
-          </h3>
-        </div>
-        <hr style="height:1px;border:none;border-top:1px solid #000;" />
-
-        <div class="col-md-12">
           <form action="/human-resource/add" method="POST">
-            <div class="form-group">
-              <label>Employee Name:</label>
-              <input type="text" class="form-control" name="Employee[username]" required>
+            <label for="username">Username: </label>
+            <div class="input-group mb-3">
+              <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                aria-describedby="basic-addon1">
             </div>
-            <div class="form-group">
-              <label>Password:</label>
-              <input type="text" class="form-control" name="Employee[password]" required>
+
+            <label for="password">Password: </label>
+            <div class="input-group mb-3">
+              <input id="password" type="text" class="form-control" placeholder="Password" aria-label="Password"
+                aria-describedby="basic-addon1">
+
             </div>
-            <div class="form-group">
-              <label>Department:</label>
-              <input type="text" class="form-control" name="Employee[department]" required>
+
+            <label for="department">Department: </label>
+            <div class="input-group mb-3">
+              <input id="department" type="text" class="form-control" placeholder="Department" aria-label="Department"
+                aria-describedby="basic-addon1">
             </div>
-            <div class="form-group">
-              <label>Salary:</label>
-              <input type="number" class="form-control" name="Employee[salary]" required>
+
+            <label for="department">Salary: </label>
+            <div class="input-group mb-3">
+              <input id="salary" type="number" class="form-control" placeholder="Salary" aria-label="Salary"
+                aria-describedby="basic-addon1">
             </div>
+
+            <button type="submit" class="btn btn-primary col-md-12">Confirm</button>
+          </form>
         </div>
-        <button type="submit" class="btn btn-info col-md-12">Add New Employee</button>
       </div>
     </div>
   </div>
+</div>
