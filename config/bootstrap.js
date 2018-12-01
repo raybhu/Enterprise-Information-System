@@ -40,50 +40,74 @@ module.exports.bootstrap = async function (done) {
     itemId: '000001',
     itemModel: 'iPhone X',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-11-30',
   }, {
     itemId: '000002',
     itemModel: 'iPhone X',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-11-30',
   }, {
     itemId: '000003',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-11-30',
   }, {
     itemId: '000004',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-11-30',
   }, {
     itemId: '000005',
     itemModel: 'iPhone X',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-10-30',
   }, {
     itemId: '000006',
     itemModel: 'iPhone X',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-10-30',
   }, {
     itemId: '000007',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-10-30',
   }, {
     itemId: '000008',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-10-30',
   }, {
     itemId: '000009',
     itemModel: 'iPhone X',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-10-30',
   }, {
     itemId: '000010',
     itemModel: 'iPhone X',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-11-30',
   }, {
     itemId: '000011',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-11-30',
   }, {
     itemId: '000012',
     itemModel: 'iPhone XS',
     itemPrice: '5000',
+    itemPurchasePrice: '3500',
+    itemImportDate: '2018-11-30',
   }]);
   if (await Order.count() > 0) {
     return done();

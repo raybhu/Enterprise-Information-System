@@ -14,6 +14,14 @@ module.exports = {
       type: 'string',
       required: true
     },
+    itemPurchasePrice: {
+      type: 'string',
+      required: true
+    },
+    itemImportDate: {
+      type: 'string',
+      required: true
+    },
     itemPrice: {
       type: 'number',
       required: true,
