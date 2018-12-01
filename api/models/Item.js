@@ -33,6 +33,10 @@ module.exports = {
     associatedOrder: {
       collection: 'Order',
       via: 'associatedItem',
+    },
+    certifiedBy: {
+      collection: 'Employee',
+      via: 'certifying',
     }
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗

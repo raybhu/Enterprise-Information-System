@@ -193,6 +193,12 @@ module.exports.bootstrap = async function (done) {
     orderStatus: 'isDelivered',
     orderTrackingNumber: '0987654321',
   }]);
+  const testUncertifiedItem1 = await Item.findOne({
+    itemId: '000003'
+  });
+  const testUncertifiedItem2 = await Item.findOne({
+    itemId: '000004'
+  });
   const testOrderedItem1 = await Item.findOne({
     itemId: '000005'
   });
@@ -244,6 +250,10 @@ module.exports.bootstrap = async function (done) {
   const orderStaff = await Employee.findOne({
     username: 'staff1'
   });
+  const inventoryStaff = await Employee.findOne({
+    username: 'staff2'
+  });
+
   await Order.addToCollection(testOrderedOrder1.id, 'associatedItem').members(testOrderedItem1.id);
   await Order.addToCollection(testOrderedOrder2.id, 'associatedItem').members(testOrderedItem2.id);
   await Order.addToCollection(testOrderedOrder3.id, 'associatedItem').members(testOrderedItem3.id);
@@ -256,6 +266,7 @@ module.exports.bootstrap = async function (done) {
   await Order.addToCollection(testDeliveredOrder2.id, 'manipulatedBy').members(orderStaff.id);
   await Order.addToCollection(testDeliveredOrder3.id, 'manipulatedBy').members(orderStaff.id);
   await Order.addToCollection(testDeliveredOrder4.id, 'manipulatedBy').members(orderStaff.id);
+  await Employee.addToCollection(inventoryStaff.id, 'certifying').members([testUncertifiedItem1.id, testUncertifiedItem2.id, testOrderedItem1.id, testOrderedItem2.id, testOrderedItem3.id, testOrderedItem4.id, testDeliveredItem1.id, testDeliveredItem2.id, testDeliveredItem3.id, testDeliveredItem4.id]);
   // By convention, this is a good place to set up fake data during development.
   //
   // For example:

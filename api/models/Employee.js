@@ -20,14 +20,16 @@ module.exports = {
       isIn: ['Order', 'Inventory', 'Accounting', 'HumanResource', 'Boss'],
       required: true,
     },
-
-    salary:{
+    salary: {
       type: 'number',
     },
-
     manipulating: {
       collection: 'Order',
       via: 'manipulatedBy',
+    },
+    certifying: {
+      collection: 'Item',
+      via: 'certifiedBy',
     }
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗

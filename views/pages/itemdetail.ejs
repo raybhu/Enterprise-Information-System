@@ -97,6 +97,17 @@
         Pending Certification
         <%}%>
       </p>
+
+
+      <%if (operationEmpModel) {%>
+      <p class="card-text">
+        Operation Staff:
+        <%=operationEmpModel.username%>
+      </p>
+      <%} %>
+      
+
+
       <%if (itemModel.itemStatus === 'isNotReviewed') {%>
       <button class="btn btn-primary" value="<%=itemModel.id%>" onclick="certifyItem(this)">Confirm Certification</button>
       <%} %>
