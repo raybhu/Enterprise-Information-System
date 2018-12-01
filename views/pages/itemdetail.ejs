@@ -68,7 +68,7 @@
       <h5 class="card-title">
         Item Status:
         <% if (itemModel.associatedOrder.length > 0) { %>
-        <% if (model.associatedOrder[0].orderStatus === 'isDelivered') {%>
+        <% if (itemModel.associatedOrder[0].orderStatus === 'isDelivered') {%>
         Delivered
         <%} else {%>
         Undelivered
