@@ -59,11 +59,9 @@ module.exports = {
     itemModel = await Item.findOne({
       id: req.params.id
     }).populate('associatedOrder');
-
     var tmpModel = await Item.findOne({
       id: req.params.id
     }).populate('certifiedBy');
-
     if (tmpModel.certifiedBy.length > 0) {
       var operationEmpModel = tmpModel.certifiedBy[0];
     }

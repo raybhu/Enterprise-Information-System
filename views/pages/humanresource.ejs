@@ -58,18 +58,13 @@
     </div>
   </div>
 </div>
-
-
-
 <div class="container">
   <div class="row col-md-12">
     <div class="col-md-8">
-
       <div class="row">
         <div class="col-md-6">
           <h4>Employee List</h4>
         </div>
-
         <div class="dropdown text-right col-md-6 mb-2">
           <% if(item == null){ %>
           <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -91,7 +86,6 @@
           </div>
         </div>
       </div>
-
       <div class="list-group">
         <% emps.forEach( function (model) { %>
         <a href="/human-resource/<%= model.id %>" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -120,7 +114,6 @@
         <%  }) %>
       </div>
     </div>
-
     <div class="col-md-4">
       <div class="card">
         <div class="card-header">
@@ -133,30 +126,26 @@
               <input id="username" type="text" class="form-control" name="Employee[username]" placeholder="Username"
                 aria-label="Username" aria-describedby="basic-addon1">
             </div>
-
             <label for="password">Password: </label>
             <div class="input-group mb-3">
               <input id="password" type="text" class="form-control" name="Employee[password]" placeholder="Password"
                 aria-label="Password" aria-describedby="basic-addon1">
             </div>
-
             <label for="department">Department: </label>
             <div class="input-group mb-3">
-                <select id="department" class="form-control" name="Employee[department]" required>
-                    <option value="Order">Order</option>
-                    <option value="Inventory">Inventory</option>
-                    <option value="Accounting">Accounting</option>
-                    <option value="HumanResource">HumanResource</option>
-                    <option value="Boss">Boss</option>
-                </select>
+              <select id="department" class="form-control" name="Employee[department]" required>
+                <option value="Order">Order</option>
+                <option value="Inventory">Inventory</option>
+                <option value="Accounting">Accounting</option>
+                <option value="HumanResource">HumanResource</option>
+                <option value="Boss">Boss</option>
+              </select>
             </div>
-
             <label for="department">Salary: </label>
             <div class="input-group mb-3">
               <input id="salary" type="number" class="form-control" name="Employee[salary]" placeholder="Salary"
                 aria-label="Salary" aria-describedby="basic-addon1">
             </div>
-
             <button type="submit" class="btn btn-primary col-md-12">Confirm</button>
           </form>
         </div>

@@ -50,15 +50,14 @@
     <% }%>
   </nav>
 </div>
-<div class=" container">
+<div class="container">
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4">Enterprise Information System - Recycle</h1>
-      <p class="lead">Welcome !</p>
+      <h1 class="display-4">Recycle</h1>
+      <p class="lead">Enterprise Information System</p>
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="card">
     <h5 class="card-header">Employee Username:
@@ -68,37 +67,34 @@
       <h5 class="card-title">Employee ID:
         <%= target.id %>
       </h5><br>
-
       <div class="input-group row">
         <label class="col-md-2">Employee Name:</label>
         <input id="username" type="text" class="col-md-4 form-control" value="<%= target.username %>" name="Employee[username]"
           required>
       </div><br>
-
       <div class="input-group row">
         <label class="col-md-2">Password:</label>
         <input id="password" type="text" class="col-md-4 form-control" value="<%= target.password %>" name="Employee[password]"
           required>
       </div><br>
-
       <div class="input-group row">
         <label class="col-md-2">Department:</label>
         <select id="department" class="form-control col-md-4" name="Employee[department]" required>
-            <option value="<%= target.department %>" disabled selected hidden><%= target.department %></option>
-            <option value="Order">Order</option>
-            <option value="Inventory">Inventory</option>
-            <option value="Accounting">Accounting</option>
-            <option value="HumanResource">HumanResource</option>
-            <option value="Boss">Boss</option>
+          <option value="<%= target.department %>" disabled selected hidden>
+            <%= target.department %>
+          </option>
+          <option value="Order">Order</option>
+          <option value="Inventory">Inventory</option>
+          <option value="Accounting">Accounting</option>
+          <option value="HumanResource">HumanResource</option>
+          <option value="Boss">Boss</option>
         </select>
       </div><br>
-
       <div class="input-group row">
         <label class="col-md-2">Salary:</label>
         <input id="salary" type="number" class="col-md-4 form-control" value="<%= target.salary %>" name="Employee[salary]"
           required>
       </div><br>
-
       <div class="input-group-append">
         <button class="btn btn-primary" value="<%= target.id %>" onclick="updateEmp(this)">Update</button>
         &nbsp&nbsp
@@ -108,15 +104,12 @@
     </div>
   </div>
 </div>
-
 <script>
-
   async function updateEmp(button) {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var department = document.getElementById("department").value;
     var salary = document.getElementById("salary").value;
-
     var response = await fetch("/human-resource/update/", {
       method: "POST",
       credentials: 'same-origin',
@@ -128,7 +121,6 @@
         salary: salary,
       }),
     });
-
     if (response.status == 200) {
       location.reload();
       alert('Update Successful');
@@ -151,4 +143,5 @@
       alert('An Error occurred');
     }
   }
+
 </script>

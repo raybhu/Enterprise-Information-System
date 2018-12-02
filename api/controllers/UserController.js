@@ -4,12 +4,8 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
-
 module.exports = {
   login: async function (req, res) {
-
-
-
     if (req.method === 'GET') {
       return res.redirect('/');
     }
@@ -52,5 +48,4 @@ module.exports = {
       return res.redirect('/');
     });
   },
-
 };

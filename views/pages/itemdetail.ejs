@@ -97,17 +97,12 @@
         Pending Certification
         <%}%>
       </p>
-
-
       <%if (operationEmpModel) {%>
       <p class="card-text">
         Operation Staff:
         <%=operationEmpModel.username%>
       </p>
       <%} %>
-      
-
-
       <%if (itemModel.itemStatus === 'isNotReviewed') {%>
       <button class="btn btn-primary" value="<%=itemModel.id%>" onclick="certifyItem(this)">Confirm Certification</button>
       <%} %>
@@ -132,11 +127,10 @@
       alert('An Error occurred');
     }
   }
-
   async function certifyItem(button) {
     var response = await fetch("/item/certify/", {
       method: "POST",
-      credentials : 'same-origin',
+      credentials: 'same-origin',
       body: JSON.stringify({
         itemId: button.value,
       }),
