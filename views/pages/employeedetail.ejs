@@ -6,7 +6,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/">Home </a>
         </li>
         <% if (emp && (emp.department === 'Order'||emp.department ==='Boss')) { %>
@@ -25,7 +25,7 @@
         </li>
         <% }%>
         <% if (emp && (emp.department === 'HumanResource'||emp.department ==='Boss')) { %>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="/human-resource">Human Resource</a>
         </li>
         <% }%>
@@ -69,37 +69,38 @@
         <%= target.id %>
       </h5><br>
 
-      <div class="row">
+      <div class="input-group row">
         <label class="col-md-2">Employee Name:</label>
         <input id="username" type="text" class="col-md-4 form-control" value="<%= target.username %>" name="Employee[username]"
           required>
       </div><br>
 
-      <div class="row">
+      <div class="input-group row">
         <label class="col-md-2">Password:</label>
         <input id="password" type="text" class="col-md-4 form-control" value="<%= target.password %>" name="Employee[password]"
           required>
       </div><br>
 
-      <div class="row">
+      <div class="input-group row">
         <label class="col-md-2">Department:</label>
         <input id="department" type="text" class="col-md-4 form-control" value="<%= target.department %>" name="Employee[department]"
           required>
       </div><br>
 
-      <div class="row">
+      <div class="input-group row">
         <label class="col-md-2">Salary:</label>
-        <input id="Salary" type="number" class="col-md-4 form-control" value="<%= target.salary %>" name="Employee[salary]"
+        <input id="salary" type="number" class="col-md-4 form-control" value="<%= target.salary %>" name="Employee[salary]"
           required>
       </div><br>
 
-      <button class="btn btn-primary" value="<%= target.id %>" onclick="updateEmp(this)">Update</button>
-      <button class="btn btn-danger" value="<%= target.id %>" onclick="deleteEmp(this)">Delete</button>
-      <a href="/human-resource" class="btn btn-Link">Back to HR List</a>
-
+      <div class="input-group-append">
+        <button class="btn btn-primary" value="<%= target.id %>" onclick="updateEmp(this)">Update</button>
+        &nbsp&nbsp
+        <button class="btn btn-danger" value="<%= target.id %>" onclick="deleteEmp(this)">Delete</button>
+        <a href="/human-resource" class="btn btn-Link">Back to HR List</a>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <script>
@@ -131,7 +132,7 @@
       credentials: 'same-origin',
       body: JSON.stringify({
         id: button.value,
-        usermame: username,
+        username: username,
         password: password,
         department: department,
         salary: salary,
@@ -139,7 +140,7 @@
     });
 
     if (response.status == 200) {
-      window.location.href = '/human-resource';
+      location.reload();
       alert('Update Item Successful');
     } else {
       alert('An Error occurred');
