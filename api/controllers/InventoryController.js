@@ -54,16 +54,30 @@ module.exports = {
     itemModel = await Item.findOne({
       id: req.params.id
     }).populate('associatedOrder');
-    sails.log(itemModel);
+
+    var tmpModel = await Item.findOne({
+      id: req.params.id
+    }).populate('certifiedBy');
+
+    if (tmpModel.certifiedBy.length > 0) {
+      var operationEmpModel = tmpModel.certifiedBy[0];
+    }
+    sails.log(operationEmpModel);
     return res.view('pages/itemdetail', {
       layout: 'layouts/general-layout',
       emp: typeof emp === 'undefined' ? null : emp,
       itemModel: itemModel,
+      operationEmpModel: typeof operationEmpModel === 'undefined' ? null : operationEmpModel,
     });
   },
   delete: async function (req, res) {
     await Item.destroy(req.body.itemId).fetch();
-    sails.log(req.body.itemId);
+    return res.status(200).json({});
+  },
+  certify: async function (req, res) {
+    await Item.update(req.body.itemId).set({
+      itemStatus: 'isReviewed',
+    }).fetch();
     return res.status(200).json({});
   }
 };

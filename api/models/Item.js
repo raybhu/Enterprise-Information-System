@@ -14,6 +14,18 @@ module.exports = {
       type: 'string',
       required: true
     },
+    itemPurchasePrice: {
+      type: 'string',
+      required: true
+    },
+    itemImportDate: {
+      type: 'string',
+      required: true
+    },
+    itemStatus: {
+      type: 'string',
+      isIn: ['isReviewed', 'isNotReviewed'],
+    },
     itemPrice: {
       type: 'number',
       required: true,
@@ -21,6 +33,10 @@ module.exports = {
     associatedOrder: {
       collection: 'Order',
       via: 'associatedItem',
+    },
+    certifiedBy: {
+      collection: 'Employee',
+      via: 'certifying',
     }
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗

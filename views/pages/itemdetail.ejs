@@ -36,7 +36,7 @@
       <div class="form-group">
         <span class="navbar-text mr-sm-2">hi,
           <%=emp.username%></span>
-        <button class="btn btn-primary my-2 my-sm-0" type="submit">Logout</button>
+        <button class="btn btn-danger my-2 my-sm-0" type="submit">Logout</button>
       </div>
     </form>
     <%} else {%>
@@ -66,9 +66,9 @@
     <img class="float-left mt-3" width="286" height="180" src="/images/iphonex.jpg" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">
-        Item Status:
+        Inventory Status:
         <% if (itemModel.associatedOrder.length > 0) { %>
-        <% if (model.associatedOrder[0].orderStatus === 'isDelivered') {%>
+        <% if (itemModel.associatedOrder[0].orderStatus === 'isDelivered') {%>
         Delivered
         <%} else {%>
         Undelivered
@@ -78,13 +78,39 @@
         <%}%>
       </h5>
       <p class="card-text">
-        Item Price:
+        Recycling price:
+        <%=itemModel.itemPurchasePrice%>
+      </p>
+      <p class="card-text">
+        Selling Price:
         <%=itemModel.itemPrice%>
       </p>
       <p class="card-text">
-        Item Model:
+        Model:
         <%=itemModel.itemModel%>
       </p>
+      <p class="card-text">
+        Certification Status:
+        <%if (itemModel.itemStatus === 'isReviewed') {%>
+        Certified
+        <%} else {%>
+        Pending Certification
+        <%}%>
+      </p>
+
+
+      <%if (operationEmpModel) {%>
+      <p class="card-text">
+        Operation Staff:
+        <%=operationEmpModel.username%>
+      </p>
+      <%} %>
+      
+
+
+      <%if (itemModel.itemStatus === 'isNotReviewed') {%>
+      <button class="btn btn-primary" value="<%=itemModel.id%>" onclick="certifyItem(this)">Confirm Certification</button>
+      <%} %>
       <button class="btn btn-danger" value="<%=itemModel.id%>" onclick="deleteItem(this)">Delete</button>
       <a href="/inventory" class="btn btn-Link">Back to Inventory</a>
     </div>
@@ -102,6 +128,22 @@
     if (response.status == 200) {
       window.location.href = '/inventory';
       alert('Delete Item Successful');
+    } else {
+      alert('An Error occurred');
+    }
+  }
+
+  async function certifyItem(button) {
+    var response = await fetch("/item/certify/", {
+      method: "POST",
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        itemId: button.value,
+      }),
+    });
+    if (response.status == 200) {
+      location.reload();
+      alert('Certify Item Successful');
     } else {
       alert('An Error occurred');
     }

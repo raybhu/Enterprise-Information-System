@@ -36,7 +36,7 @@
       <div class="form-group">
         <span class="navbar-text mr-sm-2">hi,
           <%=emp.username%></span>
-        <button class="btn btn-primary my-2 my-sm-0" type="submit">Logout</button>
+        <button class="btn btn-danger my-2 my-sm-0" type="submit">Logout</button>
       </div>
     </form>
     <%} else {%>
@@ -59,15 +59,10 @@
   </div>
 </div>
 <div class="container">
-
-
-
-
   <div class="row">
     <div class="col-md-6">
       <h4>Order List</h4>
     </div>
-
     <div class="dropdown text-right col-md-6 mb-2">
       <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
@@ -80,8 +75,6 @@
       </div>
     </div>
   </div>
-
-
   <div class="list-group">
     <% orderModels.forEach( function (model) { %>
     <a href="/order/<%= model.id%>" class="list-group-item list-group-item-action flex-column align-items-start">

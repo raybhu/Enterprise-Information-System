@@ -30,14 +30,6 @@ module.exports = {
       type: 'string',
       required: true,
     },
-    manipulatedBy: {
-      collection: 'Employee',
-      via: 'manipulating',
-    },
-    associatedItem: {
-      collection: 'Item',
-      via: 'associatedOrder',
-    },
     orderStatus: {
       type: 'string',
       isIn: ['isOrdered', 'isDelivered'],
@@ -45,6 +37,14 @@ module.exports = {
     },
     orderTrackingNumber: {
       type: 'string',
+    },
+    manipulatedBy: {
+      collection: 'Employee',
+      via: 'manipulating',
+    },
+    associatedItem: {
+      collection: 'Item',
+      via: 'associatedOrder',
     },
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
