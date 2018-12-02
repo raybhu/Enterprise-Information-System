@@ -14,27 +14,27 @@ module.exports.bootstrap = async function (done) {
   }
   await Employee.createEach([{
     username: 'staff1',
-    password: '123456',
+    password: 'nopassword',
     department: 'Order',
     salary: 8999,
   }, {
     username: 'staff2',
-    password: '123456',
+    password: 'nopassword',
     department: 'Inventory',
     salary: 8990,
   }, {
     username: 'staff3',
-    password: '123456',
+    password: 'nopassword',
     department: 'Accounting',
     salary: 8998,
   }, {
     username: 'staff4',
-    password: '123456',
+    password: 'nopassword',
     department: 'HumanResource',
     salary: 8933,
   }, {
     username: 'boss',
-    password: '123456',
+    password: 'nopassword',
     department: 'Boss',
   }]);
   if (await Item.count() > 0) {
