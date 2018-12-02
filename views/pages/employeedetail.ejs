@@ -104,28 +104,12 @@
 </div>
 
 <script>
-  async function deleteEmp(button) {
-    var response = await fetch("/human-resource/delete/", {
-      method: "POST",
-      credentials: 'same-origin',
-      body: JSON.stringify({
-        id: button.value,
-      }),
-    });
-    if (response.status == 200) {
-      window.location.href = '/human-resource';
-      alert('Delete Item Successful');
-    } else {
-      alert('An Error occurred');
-    }
-  }
 
   async function updateEmp(button) {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var department = document.getElementById("department").value;
     var salary = document.getElementById("salary").value;
-    sail.log(username);
 
     var response = await fetch("/human-resource/update/", {
       method: "POST",
@@ -142,6 +126,21 @@
     if (response.status == 200) {
       location.reload();
       alert('Update Item Successful');
+    } else {
+      alert('An Error occurred');
+    }
+  }
+  async function deleteEmp(button) {
+    var response = await fetch("/human-resource/delete/", {
+      method: "POST",
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        id: button.value,
+      }),
+    });
+    if (response.status == 200) {
+      window.location.href = '/human-resource';
+      alert('Delete Item Successful');
     } else {
       alert('An Error occurred');
     }
