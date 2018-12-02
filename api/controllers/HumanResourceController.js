@@ -60,10 +60,10 @@ module.exports = {
   update: async function (req, res) {
 
     await Employee.update(req.body.id).set({
-      username:req.body.username,
-      password:req.body.password,
-      department:req.body.department,
-      salary:req.body.salary,
+      username: req.body.username,
+      password: req.body.password,
+      department: req.body.department,
+      salary: req.body.salary,
     }).fetch();
 
     sails.log(req.body.username);
@@ -75,14 +75,25 @@ module.exports = {
   // action - create
   add: async function (req, res) {
 
-    if (req.method == "GET") return res.forbidden();
-
-    if (typeof req.body.Employee === "undefined")
-      return res.badRequest("Form-data not received.");
-
     await Employee.create(req.body.Employee);
 
+    var emp;
+    if (typeof req.session.username !== 'undefined') {
+      emp = await Employee.findOne({
+        username: req.session.username
+      });
+    }
 
-    return res.send("Successfully created!");
+    var emps = await Employee.find({
+      where: { department: req.query.d },
+      sort: 'username ASC',
+    });
+
+    return res.view('pages/humanresource', {
+      layout: 'layouts/general-layout',
+      item: typeof req.query.d === 'undefined' ? null : req.query.d,
+      emp: typeof emp === 'undefined' ? null : emp,
+      emps: typeof emps === 'undefined' ? null : emps,
+    });
   },
 };

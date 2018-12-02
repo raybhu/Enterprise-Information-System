@@ -42,7 +42,7 @@
     <%} else {%>
     <form action="/login" method="POST" class="form-inline my-2" onsubmit="login(this);return false">
       <div class="form-group">
-        <input name="username" class="form-control mr-sm-2" type="text" placeholder="Username" value="staff1">
+        <input name="username" class="form-control mr-sm-2" type="text" placeholder="Username" value="boss">
         <input name="password" class="form-control mr-sm-2" type="password" placeholder="Password" value="123456">
         <button class="btn btn-primary my-2 my-sm-0" type="submit">Login</button>
       </div>
@@ -83,8 +83,14 @@
 
       <div class="input-group row">
         <label class="col-md-2">Department:</label>
-        <input id="department" type="text" class="col-md-4 form-control" value="<%= target.department %>" name="Employee[department]"
-          required>
+        <select id="department" class="form-control col-md-4"  name="Event[organizer]" required>
+            <option value="defalut" disabled selected hidden><%= target.department %></option>
+          <option value="order">Order</option>
+          <option value="inventory">Inventory</option>
+          <option value="finance">Finance</option>
+          <option value="hr">Human Resource</option>
+          <option value="boss">Boss</option>
+        </select>
       </div><br>
 
       <div class="input-group row">
@@ -125,7 +131,7 @@
 
     if (response.status == 200) {
       location.reload();
-      alert('Update Item Successful');
+      alert('Update Successful');
     } else {
       alert('An Error occurred');
     }
@@ -140,7 +146,7 @@
     });
     if (response.status == 200) {
       window.location.href = '/human-resource';
-      alert('Delete Item Successful');
+      alert('Delete Successful');
     } else {
       alert('An Error occurred');
     }

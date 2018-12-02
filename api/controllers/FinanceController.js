@@ -15,14 +15,14 @@ module.exports = {
     }
 
     var date = req.query.date;
+    var ali;
     switch (date) {
       case undefined:
         var orderModels;
         orderModels = await Order.find({
           sort: "orderId ASC"
         });
-        var itemModels;
-        itemModels = await Item.find({ sort: "itemId ASC" });
+        ali = "All";
         break;
       case "11":
         var orderModels;
@@ -30,6 +30,7 @@ module.exports = {
           where: { orderDate: { contains: '-11-' } },
           sort: "orderId ASC"
         });
+        ali = "Nov - 2018";
         break;
       case "10":
         var orderModels;
@@ -37,6 +38,7 @@ module.exports = {
           where: { orderDate: { contains: '-10-' }, },
           sort: "orderId ASC"
         });
+        ali = "Oct - 2018";
         break;
     }
 
@@ -60,6 +62,7 @@ module.exports = {
     return res.view('pages/finance', {
       layout: 'layouts/general-layout',
       emp: typeof emp === 'undefined' ? null : emp,
+      ali:ali,
       orders: orderModels,
       orderA: orderAmount,
       orderQ: orderQuantities,
