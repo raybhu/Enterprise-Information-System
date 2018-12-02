@@ -83,13 +83,13 @@
 
       <div class="input-group row">
         <label class="col-md-2">Department:</label>
-        <select id="department" class="form-control col-md-4"  name="Event[organizer]" required>
-            <option value="defalut" disabled selected hidden><%= target.department %></option>
-          <option value="order">Order</option>
-          <option value="inventory">Inventory</option>
-          <option value="finance">Finance</option>
-          <option value="hr">Human Resource</option>
-          <option value="boss">Boss</option>
+        <select id="department" class="form-control col-md-4" name="Employee[department]" required>
+            <option value="<%= target.department %>" disabled selected hidden><%= target.department %></option>
+            <option value="Order">Order</option>
+            <option value="Inventory">Inventory</option>
+            <option value="Accounting">Accounting</option>
+            <option value="HumanResource">HumanResource</option>
+            <option value="Boss">Boss</option>
         </select>
       </div><br>
 
