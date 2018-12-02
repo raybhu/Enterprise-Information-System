@@ -15,7 +15,7 @@ module.exports = {
     }
 
     var orderModels;
-    orderModels = await Order.find({});
+    orderModels = await Order.find({sort:"orderId ASC"});
     var orderAmount = 0;
     var orderQuantities = 0;
     orderModels.forEach(function (model) {
@@ -24,7 +24,7 @@ module.exports = {
     });
 
     var itemModels;
-    itemModels = await Item.find({});
+    itemModels = await Item.find({sort:"itemId ASC"});
     var itemAmount = 0;
     var itemQuantities = 0;
     itemModels.forEach(function (model) {
