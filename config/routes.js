@@ -29,8 +29,8 @@ module.exports.routes = {
   'POST /logout': 'UserController.logout',
   'GET /human-resource': 'HumanResourceController.init',
   'GET /human-resource/:id': 'HumanResourceController.detail',
-  'POST /human-resource/update/:id': 'HumanResourceController.update',
-  'POST /human-resource/delete/:id': 'HumanResourceController.delete',
+  'POST /human-resource/update/': 'HumanResourceController.update',
+  'POST /human-resource/delete/': 'HumanResourceController.delete',
   'POST /human-resource/add': 'HumanResourceController.add',
   'GET /order': 'OrderController.init',
   'GET /order/:id': 'OrderController.detail',
@@ -40,7 +40,6 @@ module.exports.routes = {
   'POST /item/delete/': 'InventoryController.delete',
   'POST /item/certify/': 'InventoryController.certify',
   'GET /finance': 'FinanceController.init',
-
 
 
 

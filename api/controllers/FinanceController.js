@@ -14,8 +14,32 @@ module.exports = {
       });
     }
 
-    var orderModels;
-    orderModels = await Order.find({sort:"orderId ASC"});
+    var date = req.query.date;
+    switch (date) {
+      case undefined:
+        var orderModels;
+        orderModels = await Order.find({
+          sort: "orderId ASC"
+        });
+        var itemModels;
+        itemModels = await Item.find({ sort: "itemId ASC" });
+        break;
+      case "11":
+        var orderModels;
+        orderModels = await Order.find({
+          where: { orderDate: { contains: '-11-' } },
+          sort: "orderId ASC"
+        });
+        break;
+      case "10":
+        var orderModels;
+        orderModels = await Order.find({
+          where: { orderDate: { contains: '-10-' }, },
+          sort: "orderId ASC"
+        });
+        break;
+    }
+
     var orderAmount = 0;
     var orderQuantities = 0;
     orderModels.forEach(function (model) {
@@ -23,8 +47,9 @@ module.exports = {
       orderQuantities++;
     });
 
+
     var itemModels;
-    itemModels = await Item.find({sort:"itemId ASC"});
+    itemModels = await Item.find({ sort: "itemId ASC" });
     var itemAmount = 0;
     var itemQuantities = 0;
     itemModels.forEach(function (model) {
@@ -38,7 +63,7 @@ module.exports = {
       orders: orderModels,
       orderA: orderAmount,
       orderQ: orderQuantities,
-      items:itemModels,
+      items: itemModels,
       itemA: itemAmount,
       itemQ: itemQuantities,
     });

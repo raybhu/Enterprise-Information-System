@@ -72,9 +72,9 @@
       </button>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/order?status=all">All</a>
-        <a class="dropdown-item" href="/order?status=undelivered">Nov - 2018</a>
-        <a class="dropdown-item" href="/order?status=delivered">Oct - 2018</a>
+        <a class="dropdown-item" href="/finance">All</a>
+        <a class="dropdown-item" href="/finance?date=11">Nov - 2018</a>
+        <a class="dropdown-item" href="/finance?date=10">Oct - 2018</a>
       </div>
     </div>
   </div>
@@ -96,7 +96,7 @@
           <% orders.forEach( function (model) { %>
           <a href="/order/<%= model.id%>" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
-              ID:
+              OrderID:
               <%=model.orderId%>
               <small>+
                 <%=model.orderPrice%>
@@ -124,7 +124,7 @@
           <% items.forEach( function (model) { %>
           <a href="/item/<%= model.id%>" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
-              ID:
+              ItemID:
               <%=model.itemId%>
               <small>-
                 <%=model.itemPurchasePrice%>

@@ -16,7 +16,7 @@ module.exports = {
 
     var emps = await Employee.find({
       where: { department: req.query.d },
-      sort: 'salary ASC',
+      sort: 'username ASC',
     });
 
     return res.view('pages/humanresource', {
@@ -51,54 +51,25 @@ module.exports = {
   // action - delete 
   delete: async function (req, res) {
 
-    if (req.method == "GET") return res.forbidden();
-
-    var models = await Employee.destroy(req.params.id).fetch();
-
-    if (models.length == 0) return res.notFound();
-
-    return res.send("Employee Fired.");
+    await Employee.destroy(req.body.id).fetch();
+    return res.status(200).json({});
 
   },
 
   // action - update
   update: async function (req, res) {
 
-    if (req.method == "GET")
-      return res.forbidden();
-    else {
+    await Employee.update(req.body.id).set({
+      username:req.body.username,
+      password:req.body.password,
+      department:req.body.department,
+      salary:req.body.salary,
+    }).fetch();
 
-      if (typeof req.body.Employee === "undefined")
-        return res.badRequest("Form-data not received.");
+    sails.log(req.body.username);
 
-      var models = await Employee.update(req.params.id).set({
-        username: req.body.Employee.username,
-        password: req.body.Employee.password,
-        department: req.body.Employee.department,
-        salary: req.body.Employee.salary,
-      }).fetch();
+    return res.status(200).json({});
 
-      if (models.length == 0) return res.notFound();
-
-      var emp;
-      if (typeof req.session.username !== 'undefined') {
-        emp = await Employee.findOne({
-          username: req.session.username
-        });
-      }
-
-      var target = await Employee.findOne(req.params.id);
-
-      sails.log(target);
-
-      return res.view('pages/employeedetail', {
-        layout: 'layouts/general-layout',
-        emp: typeof emp === 'undefined' ? null : emp,
-        state: "Update Success!",
-        target: target,
-      });
-
-    }
   },
 
   // action - create
@@ -106,12 +77,12 @@ module.exports = {
 
     if (req.method == "GET") return res.forbidden();
 
-
     if (typeof req.body.Employee === "undefined")
       return res.badRequest("Form-data not received.");
 
     await Employee.create(req.body.Employee);
 
+
     return res.send("Successfully created!");
-  }
+  },
 };
