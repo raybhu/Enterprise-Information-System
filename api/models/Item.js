@@ -15,7 +15,7 @@ module.exports = {
       required: true
     },
     itemPurchasePrice: {
-      type: 'string',
+      type: 'number',
       required: true
     },
     itemImportDate: {

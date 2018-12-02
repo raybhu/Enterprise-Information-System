@@ -136,7 +136,7 @@
   async function certifyItem(button) {
     var response = await fetch("/item/certify/", {
       method: "POST",
-      credentials: 'same-origin',
+      credentials : 'same-origin',
       body: JSON.stringify({
         itemId: button.value,
       }),
