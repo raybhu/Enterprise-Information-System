@@ -79,52 +79,60 @@
     </div>
   </div>
 
-  <div class="card-deck">
-    <div class="card">
-      <h5 class="card-header">Order Income</h5>
-      <div class="card-body">
-        <p class="card-text">Amount:
-          <%= orderA %>
-        </p>
-        <p class="card-text">Order Quantities:
-          <%= orderQ %>
-        </p>
-      </div>
-      <h6 class="card-header">Detail</h6>
-      <div class="list-group list-group-flush">
-        <% orders.forEach( function (model) { %>
-        <a href="/order/<%= model.id%>" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            ID:
-            <%=model.orderId%>
-            <small>+
-              <%=model.orderPrice%>
-            </small>
-          </div>
-        </a>
-        <%  }) %>
+  <div class="row">
+    <div class="col-md-6 container">
+      <div class="card">
+        <h5 class="card-header">Order Income</h5>
+        <div class="card-body">
+          <p class="card-text">Amount:
+            <%= orderA %>
+          </p>
+          <p class="card-text">Order Quantities:
+            <%= orderQ %>
+          </p>
+        </div>
+        <h6 class="card-header">Detail</h6>
+        <div class="list-group list-group-flush">
+          <% orders.forEach( function (model) { %>
+          <a href="/order/<%= model.id%>" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              ID:
+              <%=model.orderId%>
+              <small>+
+                <%=model.orderPrice%>
+              </small>
+            </div>
+          </a>
+          <%  }) %>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <h5 class="card-header">Import Expenditure</h5>
-      <div class="card-body">
-        <p class="card-text">Amount: <%=itemA%></p>
-        <p class="card-text">Item Quantities: <%=itemQ%></p>
-      </div>
-      <h6 class="card-header">Detail</h6>
-      <div class="list-group list-group-flush">
+    <div class="col-md-6 container">
+      <div class="card">
+        <h5 class="card-header">Import Expenditure</h5>
+        <div class="card-body">
+          <p class="card-text">Amount:
+            <%=itemA%>
+          </p>
+          <p class="card-text">Item Quantities:
+            <%=itemQ%>
+          </p>
+        </div>
+        <h6 class="card-header">Detail</h6>
+        <div class="list-group list-group-flush">
           <% items.forEach( function (model) { %>
-            <a href="/item/<%= model.id%>" class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                ID:
-                <%=model.itemId%>
-                <small>-
-                  <%=model.itemPurchasePrice%>
-                </small>
-              </div>
-            </a>
-            <%  }) %>
+          <a href="/item/<%= model.id%>" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              ID:
+              <%=model.itemId%>
+              <small>-
+                <%=model.itemPurchasePrice%>
+              </small>
+            </div>
+          </a>
+          <%  }) %>
+        </div>
       </div>
     </div>
   </div>
