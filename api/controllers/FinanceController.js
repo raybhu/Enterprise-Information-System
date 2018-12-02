@@ -14,16 +14,15 @@ module.exports = {
     }
     var date = req.query.date;
     var ali;
+    var orderModels;
     switch (date) {
       case undefined:
-        var orderModels;
         orderModels = await Order.find({
           sort: 'orderId ASC'
         });
         ali = 'All';
         break;
       case '11':
-        var orderModels;
         orderModels = await Order.find({
           where: {
             orderDate: {
@@ -35,7 +34,6 @@ module.exports = {
         ali = 'Nov - 2018';
         break;
       case '10':
-        var orderModels;
         orderModels = await Order.find({
           where: {
             orderDate: {
