@@ -12,10 +12,12 @@ module.exports = {
         username: req.session.username
       });
     }
+    var categoryStatus = 'All';
     var orderModels;
     switch (req.query.status) {
       case 'all':
         orderModels = await Order.find({});
+        categoryStatus = 'All';
         break;
       case 'undelivered':
         orderModels = await Order.find({
@@ -23,6 +25,7 @@ module.exports = {
             orderStatus: 'isOrdered'
           }
         });
+        categoryStatus = 'Undelivered';
         break;
       case 'delivered':
         orderModels = await Order.find({
@@ -30,6 +33,7 @@ module.exports = {
             orderStatus: 'isDelivered'
           }
         });
+        categoryStatus = 'Delivered';
         break;
       default:
         orderModels = await Order.find({});
@@ -37,7 +41,8 @@ module.exports = {
     return res.view('pages/order', {
       layout: 'layouts/general-layout',
       emp: typeof emp === 'undefined' ? null : emp,
-      orderModels: orderModels
+      orderModels: orderModels,
+      categoryStatus: categoryStatus
     });
   },
   detail: async function (req, res) {

@@ -12,10 +12,12 @@ module.exports = {
         username: req.session.username
       });
     }
+    var categoryStatus = 'All';
     var itemModels;
     switch (req.query.status) {
       case 'all':
         itemModels = await Item.find({}).populate('associatedOrder');
+        categoryStatus = 'All';
         break;
       case 'ordered':
         itemModels = await Item.find({}).populate('associatedOrder', );
@@ -26,6 +28,7 @@ module.exports = {
           }
         });
         itemModels = newModels;
+        categoryStatus = 'Ordered';
         break;
       case 'instock':
         itemModels = await Item.find({}).populate('associatedOrder', {
@@ -33,6 +36,7 @@ module.exports = {
             associatedOrder: []
           }
         });
+        categoryStatus = 'In Stock';
         break;
       default:
         itemModels = await Item.find({}).populate('associatedOrder');
@@ -41,6 +45,7 @@ module.exports = {
       layout: 'layouts/general-layout',
       emp: typeof emp === 'undefined' ? null : emp,
       itemModels: itemModels,
+      categoryStatus: categoryStatus,
     });
   },
   detail: async function (req, res) {
@@ -62,7 +67,6 @@ module.exports = {
     if (tmpModel.certifiedBy.length > 0) {
       var operationEmpModel = tmpModel.certifiedBy[0];
     }
-    sails.log(operationEmpModel);
     return res.view('pages/itemdetail', {
       layout: 'layouts/general-layout',
       emp: typeof emp === 'undefined' ? null : emp,
