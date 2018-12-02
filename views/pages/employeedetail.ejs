@@ -60,62 +60,40 @@
 </div>
 
 <div class="container">
-    <div class="card">
-        <h5 class="card-header">Employee Username:
-            <%= target.username %>
-        </h5>
-        <div class="card-body">
-            <b>
-                <p class="card-text">Employee ID:
-                    <%= target.id %>
-                </p>
-                <p class="card-text">Department:
-                    <%= target.department %>
-                </p>
-                <p class="card-text">Salary:
-                    <%= target.salary %>
-                </p>
-            </b>
-            <div class="text-right"><a href="/human-resource" class="btn btn-Link">Back to HR List</a></div>
-            <hr class="simple" color="#000000" />
-            <br>
+  <div class="card">
+    <h5 class="card-header">Employee Username:
+      <%= target.username %>
+    </h5>
+    <div class="card-body">
+      <h5 class="card-title">Employee ID:
+        <%= target.id %>
+      </h5>
 
-            <h5 class="card-title">
-                If you need to update its information, please change it in the textboxes and click the blue "update"
-                button!
-            </h5>
-
-            <form action="/human-resource/update/<%= target.id %>" method="POST">
-                <div class="form-group">
-                    <label>Employee Name:</label>
-                    <input type="text" class="form-control" value="<%= target.username %>" name="Employee[username]"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label>Password:</label>
-                    <input type="text" class="form-control" value="<%= target.password %>" name="Employee[password]"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label>Department:</label>
-                    <input type="text" class="form-control" value="<%= target.department %>" name="Employee[department]"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label>Salary:</label>
-                    <input type="number" class="form-control" value="<%= target.salary %>" name="Employee[salary]"
-                        required>
-                </div>
-
-                <div class="row">
-                    <a class="col-md-6" href="/human-resource/update/<%= target.id %>"><button class="col-md-12 btn btn-primary">Update</button></a>
-
-                    <form action="/human-resource/delete/<%= target.id %>" method="POST">
-                        <button class="col-md-6 btn btn-danger">Delete</button>
-                    </form>
-
-                </div>
-            </form>
+      <form action="/human-resource/update/<%= target.id %>" method="POST">
+        <div class="row form-group">
+          <label class="col-md-2">Employee Name:</label>
+          <input type="text" class="col-md-4 form-control" value="<%= target.username %>" name="Employee[username]" required>
         </div>
+        <div class="row form-group">
+          <label class="col-md-2">Password:</label>
+          <input type="text" class="col-md-4 form-control" value="<%= target.password %>" name="Employee[password]" required>
+        </div>
+        <div class="row form-group">
+          <label class="col-md-2">Department:</label>
+          <input type="text" class="col-md-4 form-control" value="<%= target.department %>" name="Employee[department]" required>
+        </div>
+        <div class="row form-group">
+          <label class="col-md-2">Salary:</label>
+          <input type="number" class="col-md-4 form-control" value="<%= target.salary %>" name="Employee[salary]" required>
+        </div>
+
+          <a href="/human-resource/update/<%= target.id %>"><button class="btn btn-primary">Update</button></a>
+          <form action="/human-resource/delete/<%= target.id %>" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          <a href="/human-resource" class="btn btn-Link">Back to HR List</a>
+
+        </div>
+      </form>
     </div>
+  </div>
 </div>
