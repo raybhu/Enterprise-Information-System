@@ -16,18 +16,22 @@ module.exports.bootstrap = async function (done) {
     username: 'staff1',
     password: '123456',
     department: 'Order',
+    salary: 8999,
   }, {
     username: 'staff2',
     password: '123456',
     department: 'Inventory',
+    salary: 8990,
   }, {
     username: 'staff3',
     password: '123456',
     department: 'Accounting',
+    salary: 8998,
   }, {
     username: 'staff4',
     password: '123456',
     department: 'HumanResource',
+    salary: 8933,
   }, {
     username: 'boss',
     password: '123456',
