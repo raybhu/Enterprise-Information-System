@@ -1,2 +1,5 @@
 # comp-7350-group-project
-启动项目请使用 sails lift --drop, 设计文档位于Google Drive的共享文件夹中，名为**EIS 设计文档**
+The group project of the lecture comp7350.
+
+# Manual
+Please using the command `sails lift --drop` to launch the project.
